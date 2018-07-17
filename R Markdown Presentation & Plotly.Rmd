@@ -1,0 +1,41 @@
+---
+title: "R Markdown Presentation & Plotly"
+author: "Jie Li"
+date: "July 17, 2018"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(plotly)
+```
+
+```{R, echo = FALSE}
+
+library(plotly)
+```
+
+
+## Slide with different color
+
+```{r}
+p <- plot_ly(mpg, x = ~cty, y = ~hwy, alpha = 0.5)
+subplot(
+  add_markers(p, color = ~cyl, showlegend = FALSE) %>% 
+    colorbar(title = "Viridis"),
+  add_markers(p, color = ~factor(cyl))
+)
+```
+
+## Slide with size
+
+```{r}
+subplot(
+  add_markers(p, size = ~cyl, name = "default"),
+  add_markers(p, size = ~cyl, sizes = c(1, 500), name = "custom")
+)
+```
+
+## Last one
+
+###THANK YOU
